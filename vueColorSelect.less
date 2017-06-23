@@ -1,0 +1,64 @@
+@cs-dropdown-bg-color: #fff;
+@color-select-dropdown-z-index: 999;
+@dropdown-shadow-color: rgba(99, 99, 99, 0.2);
+@dropdown-border-color: rgba(0, 0, 0, 0.15);
+@content-font-family: "Helvetica Neue",Helvetica,"PingFang","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+@monospaced-font-family: Consolas, Monaco, monospace;
+
+.v-color-select-container{
+  position: relative;
+  font-family: @content-font-family;
+  &.disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.v-color-select-colors-container{
+  display: flex;
+}
+
+.v-color-select-selection-container{
+  position: absolute;
+  visibility: hidden;
+  top: 100%;
+  left: 0;
+  background-color: @cs-dropdown-bg-color;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0.05em 0.3em @dropdown-shadow-color;
+  border: 1px solid @dropdown-border-color;
+  z-index: @color-select-dropdown-z-index;
+  &.drop-right{
+    left: auto;
+    right: -0.25em;
+  }
+}
+.show-drop .v-color-select-selection-container{
+  visibility: visible;
+}
+
+.v-color-select-selection-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-value-text{
+  padding: 0 0.25em;
+  line-height: 1em;
+  height: 1em;
+  font-family: @monospaced-font-family;
+}
+
+.v-color-selection-container{
+  &::before{
+    content: '';
+    display: block;
+    height: 1px;
+    margin: 0 0.2em;
+    background-color: @dropdown-border-color;
+    margin-bottom: 1px;
+  }
+}

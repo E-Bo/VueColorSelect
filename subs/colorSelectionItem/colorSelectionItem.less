@@ -1,0 +1,93 @@
+@v-radio-active-color: #00B4FF;
+@v-color-item-border-color: rgba(0, 0, 0, 0.2);
+@v-color-item-selected-border-color: #2a71e3;
+
+@v-color-item-height: 1em;
+
+.v-color-selection-item-container{
+  display: inline-block;
+  cursor: pointer;
+  margin: 0.25em;
+  height: @v-color-item-height;
+  line-height: @v-color-item-height;
+  &.disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+.v-color-selection-item-input{
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+}
+.v-color-selection-item-handler{
+  display: inline-block;
+  box-sizing: border-box;
+  width: @v-color-item-height;
+  height: @v-color-item-height;
+  line-height: 1;
+  vertical-align: top;
+  border: 1px solid @v-color-item-border-color;
+  position: relative;
+  transition: border-color 250ms;
+}
+
+.v-color-selection-item-handler::before, .v-color-selection-item-handler::after{
+  content: '';
+  display: block;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 250ms, opacity 250ms;
+}
+.v-color-selection-item-handler.default::before, .v-color-selection-item-handler.default::after{
+  border-radius: 1px;
+  top: -3px;
+  bottom: -3px;
+  width: 3px;
+  border: 1px solid @v-color-item-selected-border-color;
+  transform: scale(1.4);
+}
+.v-color-selection-item-handler.default::before{
+  left: -3px;
+  border-right-color: transparent;
+}
+.v-color-selection-item-handler.default::after{
+  right: -3px;
+  border-left-color: transparent;
+}
+.v-color-selection-item-input:checked + .v-color-selection-item-handler.default::before, .v-color-selection-item-input:checked + .v-color-selection-item-handler.default::after{
+  visibility: visible;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.v-color-selection-item-handler.underline::before, .v-color-selection-item-handler.underline::after{
+  transform: scaleX(0);
+}
+.v-color-selection-item-handler.underline::before{
+  height: 1px;
+  background-color: @v-color-item-selected-border-color;
+  left: -1px;
+  right: -1px;
+  // bottom: -5px;
+  top: -5px;
+}
+.v-color-selection-item-handler.underline::after{
+  width: 0;
+  height: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  // bottom: -4px;
+  top: -4px;
+  border: 2px solid transparent;
+  // border-bottom-color: @v-color-item-selected-border-color;
+  border-top-color: @v-color-item-selected-border-color;
+}
+.v-color-selection-item-input:checked + .v-color-selection-item-handler.underline::before, .v-color-selection-item-input:checked + .v-color-selection-item-handler.underline::after{
+  transform: scaleX(1);
+  opacity: 1;
+  visibility: visible;
+}
